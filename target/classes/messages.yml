@@ -1,0 +1,213 @@
+# LandClaim Messages
+# Color codes: &0-9 &a-f
+# Placeholders: {player}, {target}, {claim}, {owner}, {radius}, {tier}, {cost}, {balance},
+#               {world}, {x}, {z}, {name}, {perms}, {time}, {action}, {details}
+
+prefix: "&7[&aLandClaim&7]"
+
+# ─── Claim Create ────────────────────────────────────────────────
+claim:
+  create:
+    success: "&aClaim created! Radius: {radius}"
+    tip: "&eUse &f/claim upgrade &eto expand or &f/claim gui &eto manage."
+    fail:
+      blacklisted: "&cYou cannot claim in this area!"
+      overlapped: "&cThis area is already claimed!"
+      collision: "&cYour claim would overlap another claim! Move further away."
+      exists: "&cYou already have a claim!"
+
+# ─── Claim Info ──────────────────────────────────────────────────
+  info:
+    own_header: "&6=== Your Claim ==="
+    own_name: "&fName: {name}"
+    own_tier: "&fTier: {tier}"
+    own_radius: "&fRadius: {radius}"
+    own_center: "&fCenter: {x}, {z}"
+    own_world: "&fWorld: {world}"
+    own_trusted: "&fTrusted players: {count}"
+    own_banned: "&fBanned players: {count}"
+    own_upgrade_cost: "&aNext upgrade cost: ${cost}"
+    own_max_tier: "&6Max tier reached!"
+    own_tax: "&7Next tax: &f{time} &8(&7${cost}&8)"
+    own_delinquent: "&c⚠ Delinquent! Grace until: &f{time}"
+    other_claimed: "&7This land is claimed by: {owner}"
+    other_tier: "&7Tier: {tier} | Radius: {radius}"
+    wild: "&7This land is not claimed."
+    no_claim: "&eYou don't have a claim. Walk to your desired location and run &f/claim &eto create one."
+
+# ─── Claim Upgrade ──────────────────────────────────────────────
+  upgrade:
+    success: "&aClaim upgraded to tier {tier}! Radius: {radius}"
+    no_claim: "&cYou don't have a claim yet. Use &f/claim &cto create one."
+    max_tier: "&6Your claim is already at max tier!"
+    insufficient_funds: "&cYou need ${cost} to upgrade. You have ${balance}"
+    collision: "&cUpgrade would overlap another claim! Move further away or expand in a different direction."
+    gui_collision: "&cUpgrade would overlap another claim!"
+    gui_no_funds: "&cYou cannot afford this upgrade."
+
+# ─── Trust ───────────────────────────────────────────────────────
+  trust:
+    success_full: "&a{target} now has full access to your claim!"
+    success_partial: "&a{target} added with: {perms}"
+    no_claim: "&cYou don't have a claim!"
+    usage: "&cUsage: &f/claim trust <player> [build|chest|interact|all]"
+    not_found: "&cPlayer not found: {target}"
+    self: "&cYou cannot trust yourself!"
+    already_trusted: "&e{target} is already trusted!"
+    cancelled: "&cTrust cancelled by another plugin."
+    unknown_perm: "&eUnknown permission: {perm}. Valid: build, chest, interact"
+
+  untrust:
+    success: "&c{target} is no longer trusted in your claim."
+    no_claim: "&cYou don't have a claim!"
+    usage: "&cUsage: &f/claim untrust <player>"
+    not_trusted: "&e{target} is not trusted in your claim."
+
+  perm_editor:
+    untrusted: "&c{target} is no longer trusted."
+
+# ─── Abandon ─────────────────────────────────────────────────────
+  abandon:
+    success: "&cYour claim has been abandoned."
+    no_claim: "&cYou don't have a claim to abandon!"
+    no_request: "&cYou didn't request abandonment. Run &f/claim abandon &cfirst."
+    confirm: "&eAre you sure you want to abandon your claim?"
+    confirm_tip: "&7Type &f/claim abandon confirm &7within 30 seconds to confirm."
+
+# ─── Home ────────────────────────────────────────────────────────
+  home:
+    success: "&aTeleported to your claim!"
+    no_claim: "&cYou don't have a claim!"
+    cooldown: "&cPlease wait {time} more seconds."
+
+# ─── Admin ───────────────────────────────────────────────────────
+  admin:
+    no_perm: "&cNo permission."
+    bypass_enabled: "&aAdmin bypass enabled — you bypass all claim protection."
+    bypass_disabled: "&cAdmin bypass disabled — you are now subject to claim protection."
+
+# ─── Name ────────────────────────────────────────────────────────
+  name:
+    success: "&aClaim renamed to: {name}"
+    no_claim: "&cYou don't have a claim!"
+    current: "&eClaim name: {name}"
+    usage: "&cUsage: &f/claim name <name>"
+    too_long: "&cName too long! Max 100 characters."
+
+# ─── Transfer ────────────────────────────────────────────────────
+  transfer:
+    success: "&aClaim transferred to {target}"
+    no_claim: "&cYou don't have a claim!"
+    no_request: "&cNo pending transfer found. Run &f/claim transfer <player> &cfirst."
+    usage: "&cUsage: &f/claim transfer <player>"
+    not_found: "&cPlayer not found: {target}"
+    self: "&eYou already own this claim!"
+    target_has_claim: "&cThat player already has a claim!"
+    confirm: "&eAre you sure you want to transfer your claim to &f{target}&e?"
+    confirm_tip: "&7Type &f/claim transfer confirm &7within 30 seconds to confirm."
+
+# ─── Ban ─────────────────────────────────────────────────────────
+  ban:
+    success: "&c{target} banned from your claim."
+    no_claim: "&cYou don't have a claim!"
+    no_request: "&cNo pending ban found. Run &f/claim ban <player> &cfirst."
+    usage: "&cUsage: &f/claim ban <player>"
+    not_found: "&cPlayer not found: {target}"
+    self: "&cYou cannot ban yourself!"
+    already_banned: "&e{target} is already banned!"
+    confirm: "&eAre you sure you want to ban &f{target}&e from your claim?"
+    confirm_tip: "&7Type &f/claim ban confirm &7within 30 seconds to confirm."
+
+  unban:
+    success: "&a{target} unbanned from your claim."
+    no_claim: "&cYou don't have a claim!"
+    usage: "&cUsage: &f/claim unban <player>"
+    not_banned: "&e{target} is not banned."
+
+# ─── Spawn ───────────────────────────────────────────────────────
+  setspawn:
+    no_claim: "&cYou don't have a claim!"
+    outside: "&cYou must be inside your claim to set the spawn point!"
+    success: "&aClaim spawn point set!"
+
+# ─── Top ─────────────────────────────────────────────────────────
+  top:
+    header: "&6=== Top Claims ==="
+    empty: "&eNo claims yet."
+    entry: "&e{rank}. &f{name} &8- &7Tier {tier} &8| &7Radius {radius} &8| &7{world}"
+
+# ─── Logs ────────────────────────────────────────────────────────
+  logs:
+    no_claim: "&cYou don't have a claim!"
+    empty: "&eNo logs found."
+    header: "&6=== Recent Claim Logs ==="
+    entry: "&7[{time}] &f{action} &8- &7{player} &8{details}"
+
+# ─── Notifications ──────────────────────────────────────────────
+notify:
+  trusted: "&eYou have been trusted in {owner}'s claim!"
+  untrusted: "&eYou have been untrusted from {owner}'s claim."
+  banned: "&cYou have been banned from {owner}'s claim!"
+  unbanned: "&aYou have been unbanned from {owner}'s claim."
+  transferred: "&aA claim has been transferred to you!"
+
+# ─── Flags ────────────────────────────────────────────────────────
+  flag:
+    toggle: "&e{flag} &aenabled"
+    untoggle: "&e{flag} &cdisabled"
+
+# ─── Protection ──────────────────────────────────────────────────
+protection:
+  banned: "&cYou are banned from this claim!"
+  denied: "&cThis area is claimed by {owner}"
+  denied_build: "&cYou cannot build here. Claimed by {owner}"
+  denied_chest: "&cYou cannot open containers here. Claimed by {owner}"
+  denied_interact: "&cYou cannot use switches or doors here. Claimed by {owner}"
+
+# ─── Enter / Exit ────────────────────────────────────────────────
+enter:
+  message: "&e✦ &fNow entering: &b{claim}&r"
+  title: "&e✦ {claim}"
+  subtitle: "&7{owner}'s claim"
+
+# ─── GUI ─────────────────────────────────────────────────────────
+gui:
+  claim_list:
+    removed: "&cRemoved {target}'s claim."
+    teleported: "&aTeleported to {target}'s claim."
+
+  blacklist:
+    add_world_prompt: "&eType the world name to blacklist in chat, or type 'cancel' to cancel."
+    add_area_prompt: "&eType &fworld x1 z1 x2 z2 &ein chat to blacklist an area, or type 'cancel' to cancel."
+    add_world_success: "&aWorld '{world}' added to blacklist."
+    add_area_success: "&aArea added to blacklist."
+    remove_world_success: "&aRemoved world '{world}' from blacklist."
+    remove_area_success: "&aRemoved area from blacklist."
+    invalid_format: "&cInvalid format. Use: &fworld x1 z1 x2 z2"
+    invalid_coords: "&cInvalid coordinates. Use numbers."
+
+  global_trust:
+    add_prompt: "&aType the name of the player to globally trust:"
+    cancel_tip: "&7Type 'cancel' to abort."
+    added: "&aGlobal trust added for {target}"
+    removed: "&cRemoved global trust for {target}"
+    not_found: "&cPlayer not found."
+
+  admin:
+    reloaded: "&aAll data saved and reloaded."
+
+  general:
+    cancelled: "&eCancelled."
+
+  border:
+    enabled: "&7Claim border &aenabled&7."
+    disabled: "&7Claim border &cdisabled&7."
+    no_claim: "&cYou don't have a claim."
+
+  notify:
+    enabled: "&aClaim enter/exit notifications enabled."
+    disabled: "&7Claim enter/exit notifications disabled."
+
+  trust:
+    add_prompt: "&eType the name of a player to trust in chat, or type 'cancel' to cancel."
+    added: "&a{target} is now trusted on your claim!"

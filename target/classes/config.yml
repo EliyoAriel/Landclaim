@@ -1,0 +1,111 @@
+# LandClaim Configuration
+
+# Default start radius for a new claim
+default-radius: 5
+
+# Maximum radius a claim can reach
+max-radius: 100
+
+# Starting tier for new claims (1 = lowest)
+start-tier: 1
+
+# Whether permission nodes (landclaim.tier.X) should override the starting tier
+# If true, players with landclaim.tier.5 will start at tier 5
+use-permission-start-tier: false
+
+# Claim tiers - each tier increases radius by the increment
+# Price increases with each tier
+tiers:
+  1:
+    radius: 5
+    price: 0
+  2:
+    radius: 10
+    price: 500
+  3:
+    radius: 20
+    price: 2000
+  4:
+    radius: 35
+    price: 5000
+  5:
+    radius: 50
+    price: 10000
+  6:
+    radius: 75
+    price: 25000
+  7:
+    radius: 100
+    price: 50000
+
+# Enter message shown when walking into a claim (supports & color codes)
+# Set to "" to disable
+enter-message: "&e✦ &fNow entering: &b{claim}&r"
+
+# Protection settings
+protection:
+  block-break: true
+  block-place: true
+  interact: true
+  chest-access: true
+  pvp: false
+  offline-extra: false
+  animal-damage: true
+  vehicle-damage: true
+
+# GUI settings
+gui:
+  title: "&8&lClaim Management"
+  rows: 3
+
+# Database settings
+database:
+  # Available types: sqlite, mysql
+  type: sqlite
+  # SQLite settings
+  sqlite:
+    file: data.db
+  # MySQL settings (used when type: mysql)
+  mysql:
+    host: localhost
+    port: 3306
+    database: landclaim
+    username: root
+    password: ""
+    pool-size: 10
+
+# Home teleport cooldown in seconds
+home-cooldown: 5
+
+# Tax / Claim Taxes
+# Auto-deducts a periodic cost from the owner's balance.
+# Tax scales with claim radius: tax = base-cost × (radius ÷ default-radius)
+# If balance is insufficient, claim enters grace period then gets abandoned.
+tax:
+  enabled: false
+  # Interval in hours between tax collection
+  interval-hours: 24
+  # Base cost per tier (list matches tiers 1..N)
+  # Final tax = base × current_radius ÷ default_radius
+  cost-per-tier:
+    - 0
+    - 10
+    - 25
+    - 50
+    - 100
+    - 200
+    - 500
+  # Grace period in days before auto-abandon after failed payment
+  grace-days: 3
+
+# Blacklist - prevent claiming in specific worlds or areas
+blacklist:
+  worlds: []
+  areas: []
+  # areas:
+  #   - world: world
+  #     x1: -100
+  #     z1: -100
+  #     x2: 100
+  #     z2: 100
+  #     reason: "Spawn area"

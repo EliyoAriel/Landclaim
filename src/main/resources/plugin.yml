@@ -1,0 +1,33 @@
+main: com.landclaim.LandClaimPlugin
+name: LandClaim
+version: ${project.version}
+api-version: '26.1'
+depend: [Vault]
+softdepend: [PlaceholderAPI]
+authors: [LandClaimDev]
+
+commands:
+  claim:
+    description: Manage your land claims
+    usage: /<command> [gui|upgrade|info|border|trust|untrust|abandon|home|admin|name|transfer|ban|unban|setspawn|top|logs]
+    aliases: [landclaim, lc]
+
+permissions:
+  landclaim.use:
+    description: Allows using /claim
+    default: true
+  landclaim.upgrade:
+    description: Allows upgrading claim
+    default: true
+  landclaim.border:
+    description: Allows toggling claim border
+    default: true
+  landclaim.trust:
+    description: Allows trusting players in your claim
+    default: true
+  landclaim.top:
+    description: Allows viewing claim leaderboard
+    default: true
+  landclaim.admin:
+    description: Admin access to all claims
+    default: op
